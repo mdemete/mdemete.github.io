@@ -1,0 +1,21 @@
+ame: "Melinda Demeter"
+output_dir: "."
+navbar:
+  title: "Melinda Demeter"
+  left:
+    - text: "Home"
+      href: home.html
+    - text: "Quizzes"
+      href: quizzes.html
+    - text: "Final Project"
+      href: final.html
+
+  right:
+    - icon: fa-github fa-lg
+      href: http://github.com/mdemete
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/melinda-demeter-19769182/
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'
