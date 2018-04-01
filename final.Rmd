@@ -9,7 +9,7 @@ This is my final project for Data Science on Unstructured Text Data course taken
 
 The purpose of this analysis is to compare news articles about Romania with those about Norway, by means of sentiment analysis over time and by news section categories, using tidytext [https://www.tidytextmining.com/] mining and R [https://www.r-project.org/].  
 Why these two countries? I was born and raised in Romania, Hungary's lovely neighbour country and I was curious to see what kind of news are being written / reported about it abroad. Performing sentiment analysis on these texts (and having certain ideas about the expected output) gave me the idea of comparing it with another country. 
-Since Romania is not famous for its prosperity, lack of corruption and overly satisfied people, I thought that best comparison would be with the happiest country in the world, as per 2017's Happiness Index [http://worldhappiness.report/]  
+Since Romania is not famous for its prosperity, lack of corruption and overly satisfied people, I thought that best comparison would be with the happiest country in the world, as per 2017's Happiness Index, Norway. [http://worldhappiness.report/]  
 
 
 <img src="trolltunga.jpeg" >
@@ -137,7 +137,7 @@ articles_N_2013_2016_cleaned<- articles_N_2013_2016_cleaned %>% filter(!is.na(te
 ```
 
 
-**TF- IDF analysis of articles about Romania and Norway**
+###TF- IDF analysis of articles about Romania and Norway
 
 TF-IDF stands for term frequency-inverse document frequency and the product of these two for each word gives us how frequent this word is in a document, multiplied by how unique the word is within the entire corpus of documents.
 I grouped the articles into a collection of documents based on the *sectionName* (the news category).
@@ -204,8 +204,8 @@ articles_RO_2013_2016_elements %>%
   coord_flip()
 ```
 
-For articles under Environment section, we see that *bears* and *forests* are particularly important. Many bears live indeed in the Romanian forests, and both bears and *illegal* *logging* has caused many controversy in the past years. The third most frequent word (*Sturdza*) is the name of a noble business man involved in the scandal. *EIA* is the Environmental Investigation Agency and *hydropower* energy topic was also surrounded by a corruption scandal.
-In the Opinions section we get a hint to the fact that articles often discuss Romania's *EU* membership and widely compare it to *Bulgaria* (its neighboring country that joined EU in the same period). No surprise, many articles are related to Great Britain (actually it made me think if news about UK compared with Romania should be excluded or not). *Roma* related topics are also frequent; so are articles about *migrants* leaving in *Spain*, and the *rosia* term is related to the infamous gold and silver mining project that caused (and still causes) a lot of controversy. 
+For articles under Environment section, we see that *bears* and *forests* are particularly important. Many bears live indeed in the Romanian forests, and both bears and *illegal* *logging* has caused many controversy in the past years. The third most frequent word (*Sturdza*) is the name of a noble business man involved in the logging scandal. *EIA* is the Environmental Investigation Agency and *hydropower* energy topic was also surrounded by a corruption scandal.
+In the Opinions section we get a hint to the fact that articles often discuss Romania's *EU* membership and widely compare it to *Bulgaria* (its neighboring country that joined EU in the same period). No surprise, many articles are related to Great Britain (actually it made me think whether news about UK compared to Romania should be excluded or not; I kept those which were not in the "UK news" sections). *Roma* related topics are also frequent; so are articles about *migrants* living in *Spain*, and the *rosia* term is related to the infamous gold and silver mining project that caused (and still causes) a lot of controversy. 
 
 
 ```{r, message=FALSE, warning=F, echo=F}
@@ -302,7 +302,7 @@ articles_N_2013_2016_elements %>%
 ```
 
 
-**Bi-grams**
+###Bi-grams
 
 Bi-grams are useful in examining pairs of two consecutive words.
 
@@ -452,6 +452,7 @@ negated_words_N %>%
 ```
 
 
+
 For bi-grams we can create a graphical network of words where the most frequent regular pairs have a central location.
 
 
@@ -483,7 +484,7 @@ ggraph(bigram_graph_RO, layout = "fr") +
 
 ```
 
-Sadly, the most frequent ones do not seem to be extremly happy word associations. One familiar with Romanian history and reality can recognize most of the key bigrams used often in articles, that are indeed somewhat reflective of current carpathic society: *anti-corruption efforts*, *tax-evasion* and *money-laundering*, *ex-dictator Ceausescu* and his *communist* era still often mentioned (along with the world '*revolutionary*' related to his elimination), *health service* is still a recurring topic. Sadly the '*nightclub fire*' (a tragic event in 2015 which 64 young people died causing major political turmoil) also hit the news. Mass protests over the corruption linked to the fire led to the resignation of the *Prime Minister* of Romania, *Victor Ponta*, whose name can also be visualized above.
+Sadly, the most frequent ones do not seem to be extremly happy word associations. One familiar with Romanian history and reality can recognize most of the key bigrams used often in articles, that are indeed somewhat reflective of current carpathic society: *anti-corruption efforts*, *tax-evasion* and *money-laundering*, *ex-dictator Ceausescu* and his *communist* era still often mentioned (along with the world '*revolutionary*' related to his elimination), *health service* is still a recurring topic. Sadly the '*nightclub fire*' (a tragic event in 2015 which 64 young people died causing major political turmoil) also repeatedly hit the news. Mass protests over the corruption linked to the fire led to the resignation of the *Prime Minister* of Romania, *Victor Ponta*, whose name can also be visualized above.
 
 
 ```{r, message=FALSE, warning=F, echo=F}
@@ -511,6 +512,7 @@ Sadly, the most frequent ones do not seem to be extremly happy word associations
 #   geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
 #   theme_void()
 ```
+
 
 
 
@@ -546,7 +548,8 @@ Regarding articles about Norway, there seem to be two dominant topics (derived f
 
 
 
-** Sentiment analysis**
+
+###Sentiment analysis
 
 
 
@@ -618,7 +621,8 @@ For Norway the most frequent negative words include *cold* and *dark*, which is 
 
 Interestingly, top 1 words here are opposites: most negative is *prison* (and highly likely associated with articles discussing the controversial prison life of Breivik, following his terrorist attack), while *free* earns its first spot, but free might be coming from positive articles praising what a free and lovely country Norway is, or from articles discussing if the previously mentioned monster might be set free?
 
-So let's dig deeper into the context:
+
+So let's dig deeper into the context, by filtering on the word "free" in our bigrams:
 
 
 ```{r, message=FALSE, warning=F, echo=F}
@@ -650,8 +654,10 @@ We can see that free is used in variety of contexts, and mostly in neutral way (
 
 
 
-**Let's have a look at the change in sentiment over time, based on articles mentioning these countries.**
+###Let's have a look at the change in sentiment over time, based on articles mentioning these countries.
+
 The analysis is done based on the **Bing** lexicon. We first find a sentiment score for each word, then we count up positive and negative words on a yearly basis at article category level, then separate sentiments into negative and positive sentiment columns so that lastly we can obtain a *net sentiment* (positive - negative).
+
 
 ```{r, message=FALSE, warning=F, echo=F}
 ### ROMANIA TOP negative / positive words
@@ -696,6 +702,7 @@ For the other categories we have mixed net sentiment. Namely, for *Environment*,
 For *Travel* on the other hand, the net sentiment is positive, and it's due to articles published about Romanian travel sites, 1 in 2013 and 4 in 2015 (maybe to compensate lack of travel related articles in 2014). *Cities* articles cover similar aspects. *Sport* articles' net sentiment varies yearly, as does the performance on Romanian sport teams.
 
 
+
 ```{r, message=FALSE, warning=F, echo=F}
 tidy_articles_N_per_year<- articles_N_2013_2016_cleaned  %>%
   group_by(year) %>%
@@ -721,7 +728,7 @@ ggplot(N_years_bing, aes(index, sentiment, fill =sectionName)) +
 
 Interestingly in terms of *politics* Norway seems to have been praised in 2016 by Guardian's journalists, having a positive net sentiment. More striking is the *World news* section, where we have huge change in net sentiment, especially in 2015 vs. 2014. It's mostly due to articles discussing the 2011 terrorist attacks (as in 2015 there were some new developments regarding Breivik's case), including the article *"Utya four years on: what's the mood in Norway?"*, which explain it.
 
-Norway does not seem to be such a happy country after all - based on Guardian articles on certain topics in a certain period!
+**Norway does not seem to be such a happy country after all - based on Guardian articles on certain topics in a certain period!**
 
 
 ```{r, message=FALSE, warning=F, echo=F}
@@ -743,7 +750,8 @@ No *Life and style* articles about Norway, but a few under *Society* section, sh
 
 Compared to Romania, Norway has very few articles written about its *Sport* life; the *Travel* section does seem to be filled with net positive articles.
 
-**Conclusion**
+
+###Conclusion
 
 My initial idea was to try to assess with text analysis the external (british press) perspective regarding 'happiness' level of my home country (which ranks average in the 2017 Happiness report) versus the worlds happiest one- Norway. I was eager to see if there's any correlation in terms of written material generated in various newspaper sections and these countries' relative ranking (not implying any causation).  
 **Based on the above net sentiment analysis of written media, I am surprised to see that Norway does not emerge as an extremely happy country. Need to highlight though, that their happiness seems to be shadowed by the 2011 terrorist attack that shook the entire country and remains a sensitive current topic, and most negativity from press is mostly associated with this event which is not definitory (based on official happiness ranking) for the Norwegian society / politics / environment.**
@@ -751,4 +759,6 @@ My initial idea was to try to assess with text analysis the external (british pr
 **Unfortunately in case of articles about Romania, overall there seem to be many more negative topics - ranging from corruption to environmental issues, bad policies, etc. The most positive words seems to be related to sports, which is not necessarily going to help the country improve its relative ranking in the near future...**
 
 
-The Happiness Report uses structured data for their regression (economic data, surveysm etc.) in compiling this ranking. I can imagine considering some happiness indicators based also on unstructured data (tweets, comments, blog posts, etc.) which can help better assess how a citizen feels about its country... The texts analyzed above are extremely limited both in size and obviously subject to the specific language used by certain britih journalists, however, I think that they can serve as an example in how sentiment analysis can help understand opinions about a potential destination. **Maybe at one point citizen happiness level could be more easily assessed via unstructured data, with the help of similar cool tools.**
+The Happiness Report uses structured data for their regression (economic data, surveysm etc.) in compiling this ranking. I can imagine considering some happiness indicators based also on unstructured data (tweets, comments, blog posts, etc.) which can help better assess how a citizen feels about its country... The texts analyzed above are extremely limited both in size and obviously subject to the specific language used by certain britih journalists, however, I think that they can serve as an example in how sentiment analysis can help understand opinions about a potential destination. **Maybe at one point citizen happiness level could be more easily assessed via unstructured data, with the help of such cool tools as tidytext.**
+
+(You may find the code on my github page, https://github.com/mdemete/CEU-2018--DS-on-Unstructured-Text-Data-class)
