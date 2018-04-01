@@ -4,6 +4,6 @@
 
 <style> body { text-align: justify} </style>
 
-<img src="images/Melinda2.jpeg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
+<img src="Melinda2.jpeg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
 
 I am currently working towards a MSc degree in Business Analytics at Central European University in Hungary.

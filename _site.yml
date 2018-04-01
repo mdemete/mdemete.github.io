@@ -3,11 +3,11 @@ output_dir: "."
 navbar:
   title: "Melinda Demeter"
   left:
-    - text: "Home"
+    - text: Home
       href: home.html
-    - text: "Quizzes"
+    - text: Quizzes
       href: quizzes.html
-    - text: "Final Project"
+    - text: Final Project
       href: final.html
 
   right:
@@ -19,3 +19,5 @@ output:
   html_document:
     theme: paper
     css: 'styles.css'
+    lib_dir: site_libs
+    self_contained: no
