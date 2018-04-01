@@ -12,13 +12,13 @@ Why these two countries? I was born and raised in Romania, Hungary's lovely neig
 Since Romania is not famous for its prosperity, lack of corruption and overly satisfied people, I thought that best comparison would be with the happiest country in the world, as per 2017's Happiness Index [http://worldhappiness.report/]  
 
 
-<img src="trolltunga.jpeg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
+<img src="trolltunga.jpeg" >
 (Trolltunga in Norway, https://www.theguardian.com/travel/2015/jul/25/norway-hiking-walking-affordable-bus-stavanger )
 
 My source of data is the The Guardian British daily newspaper which has a very convenient API [http://open-platform.theguardian.com/] and a rich source of articles for these two European countries. 
 
 
-<img src="bears.jpeg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
+<img src="bears.jpg" style="width:25%; border:10px solid; margin-right: 20px" align="left">
 (Bears in Romania, https://www.theguardian.com/environment/2016/oct/05/romania-bans-trophy-hunting-of-brown-bears-wolves-lynx-and-wild-cats )
 
 Below I perform various analysis of articles. The Happiness Report for 2017 was compiled based mostly on surveys over years 2014-2016.
