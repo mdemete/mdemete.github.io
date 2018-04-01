@@ -4,7 +4,7 @@ navbar:
   title: "Melinda Demeter"
   left:
     - text: Home
-      href: home.html
+      href: index.html
     - text: Quizzes
       href: quizzes.html
     - text: Final Project
